@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="event_booking_view_tree" model="ir.ui.view">
+            <field name="name">event.booking.tree</field>
+            <field name="model">event.booking</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="name"/>
+                    <field name="event_type_id"/>
+                    <field name="booking_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="event_booking_view_form" model="ir.ui.view">
+            <field name="name">event.booking.form</field>
+            <field name="model">event.booking</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <header>
+                        <button name="catering_service" class="oe_highlight" states="draft" string="Catering Service"
+                                type="object"
+                        />
+                        <button name="invoice_button" class="oe_highlight" states="delivered" string="Create Invoice"
+                                type="object"
+                        />
+                        <button name="button_confirmed" class="oe_highlight" states="draft" string=" Confirm"
+                                type="object"
+                        />
+                        <button name="button_deliver" class="oe_highlight" states="confirmed" string="Deliver"
+                                type="object"
+                        />
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirmed,delivered,invoice,expired"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="get_catering" string="Catering"
+                                    icon="fa-coffee" attrs="{'invisible': [('state', '=', 'draft')]}">
+                            </button>
+                            <button class="oe_stat_button" type="object" name="get_invoice" string="Invoice"
+                                    icon="fa-book" attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                                <field string="Invoice" name="invoice_count" widget="statinfo"/>
+
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Paid"
+                                attrs="{'invisible': [('payment_status', '!=', 'paid')]}"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="partner_id" widget="res_partner_many2one"
+                                       context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                       options="{'always_reload': True}"/>
+                                <field name="event_type_id"/>
+                                <field name="booking_date"/>
+                            </group>
+                            <group>
+                                <field name="event_start_date"/>
+                                <field name="event_end_date"/>
+                                <field name="duration"/>
+                                <field name="payment_status" attrs="{'invisible': True}"/>
+<!--                                <field name="sale_order_id"/>-->
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="event_booking_action" model="ir.actions.act_window">
+            <field name="name">Event Booking</field>
+            <field name="res_model">event.booking</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+    </data>
+</odoo>

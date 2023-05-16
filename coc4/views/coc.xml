@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+             <record id="coc_view_tree" model="ir.ui.view">
+            <field name="name">coc.tree</field>
+            <field name="model">clash.codes</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="resistence"/>
+                </tree>
+            </field>
+        </record>
+        <record id="coc_view_form" model="ir.ui.view">
+            <field name="name">coc.form</field>
+            <field name="model">clash.codes</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <sheet>
+                        <group>
+                                <field name="resistence" widget="selection_badge"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="coc_menu_action" model="ir.actions.act_window">
+            <field name="name">coc</field>
+            <field name="res_model">clash.codes</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="coc_menu_new" name="COC">
+            <menuitem id="coc_menu" action="coc_menu_action"/>
+        </menuitem>
+    </data>
+</odoo>

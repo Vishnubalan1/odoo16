@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="sale_order_menu"
+              action="invoice_wizard_action"
+              parent='sale.menu_sale_invoicing'
+              sequence="2"/>
+
+</odoo>

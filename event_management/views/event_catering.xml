@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="event_catering_view_tree" model="ir.ui.view">
+            <field name="name">event.catering.tree</field>
+            <field name="model">event.catering</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="name"/>
+                    <field name="event_booking_id"/>
+                    <field name="booking_date_id"/>
+                </tree>
+            </field>
+
+        </record>
+        <record id="event_catering_view_form" model="ir.ui.view">
+            <field name="name">event.catering.form</field>
+            <field name="model">event.catering</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <header>
+                        <button name="button_confirmed" class="oe_highlight" states="draft" string=" Confirm"
+                                type="object"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirmed,delivered,invoice,expired"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="event_booking_id"/>
+                                <field name="booking_date_id"/>
+                                <field name="start_date_id"/>
+                                <field name="end_date_id"/>
+                                <field name="guests"/>
+                                <!--                                <field name="total" widget="monetary"/>-->
+                                <!--                                <field name="currency_id" invisible="1"/>-->
+                            </group>
+                            <group>
+                                <field name="welcome_drink"/>
+                                <field name="break_fast"/>
+                                <field name="lunch"/>
+                                <field name="dinner"/>
+                                <field name="snacks_drinks"/>
+                                <field name="beverages"/>
+                            </group>
+                            <notebook>
+                                <page string='welcome drink' attrs="{'invisible': [('welcome_drink','!=',True)]}">
+                                    <field name="welcome_drink_ids">
+                                        <tree editable="bottom">
+                                            <field name="item" domain="[('category','=','welcome_drink' )]"/>
+                                            <field name="description"/>
+                                            <field name="uom_id"/>
+                                            <field name="unit_prize"/>
+                                            <field name="quantity"/>
+                                            <field name="sub_total" widget="monetary"/>
+                                            <field name="currency_id" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                        <field name="total_welcome_drink"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+                                </page>
+                                <page string='Break Fast' attrs="{'invisible': [('break_fast','!=',True)]}">
+                                    <field name="break_fast_ids">
+                                        <tree editable="bottom">
+                                            <field name="item" domain="[('category','=','break_fast' )]"/>
+                                            <field name="description"/>
+                                            <field name="uom_id"/>
+                                            <field name="unit_prize"/>
+                                            <field name="quantity"/>
+                                            <field name="sub_total" widget="monetary"/>
+                                            <field name="currency_id" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                        <field name="total_break_fast"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+                                </page>
+                                <page string='Lunch' attrs="{'invisible': [('lunch','!=',True)]}">
+                                    <field name="lunch_ids">
+                                        <tree editable="bottom">
+                                            <field name="item" domain="[('category','=','lunch' )]"/>
+                                            <field name="description"/>
+                                            <field name="uom_id"/>
+                                            <field name="unit_prize"/>
+                                            <field name="quantity"/>
+                                            <field name="sub_total" widget="monetary"/>
+                                            <field name="currency_id" invisible="1"/>
+
+                                        </tree>
+                                    </field>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                        <field name="total_lunch"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+                                </page>
+                                <page string='Snacks  Drinks' attrs="{'invisible': [('snacks_drinks','!=',True)]}">
+                                    <field name="snacks_drinks_ids">
+                                        <tree editable="bottom">
+                                            <field name="item" domain="[('category','=','snacks_drinks' )]"/>
+                                            <field name="description"/>
+                                            <field name="uom_id"/>
+                                            <field name="unit_prize"/>
+                                            <field name="quantity"/>
+                                            <field name="sub_total" widget="monetary"/>
+                                            <field name="currency_id" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                        <field name="total_snacks_drinks"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+                                </page>
+                                <page string='Dinner' attrs="{'invisible': [('dinner','!=',True)]}">
+                                    <field name="dinner_ids">
+                                        <tree editable="bottom">
+                                            <field name="item" domain="[('category','=','dinner' )]"/>
+                                            <field name="description"/>
+                                            <field name="uom_id"/>
+                                            <field name="unit_prize"/>
+                                            <field name="quantity"/>
+                                            <field name="sub_total" widget="monetary"/>
+                                            <field name="currency_id" invisible="1"/>
+
+                                        </tree>
+                                    </field>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                        <field name="total_dinner"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+                                </page>
+                                <page string='Beverages' attrs="{'invisible': [('beverages','!=',True)]}">
+                                    <field name="beverages_ids">
+                                        <tree editable="bottom">
+                                            <field name="item" domain="[('category','=','beverages' )]"/>
+                                            <field name="description"/>
+                                            <field name="uom_id"/>
+                                            <field name="unit_prize"/>
+                                            <field name="quantity"/>
+                                            <field name="sub_total" widget="monetary"/>
+                                            <field name="currency_id" invisible="1"/>
+
+                                        </tree>
+                                    </field>
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                        <field name="total_beverages"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </group>
+
+                                </page>
+                            </notebook>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                <field name="total"
+                                       attrs="{'invisible': [('welcome_drink','!=',True),('break_fast','!=',True),('lunch','!=',True),('snacks_drinks','!=',True),('dinner','!=',True),('beverages','!=',True)]}"
+                                       widget="monetary"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+
+        </record>
+        <record id="event_catering_action" model="ir.actions.act_window">
+            <field name="name">Event Catering</field>
+            <field name="res_model">event.catering</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

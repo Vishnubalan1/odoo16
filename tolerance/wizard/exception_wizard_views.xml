@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="exception_wizard_view_form" model="ir.ui.view">
+        <field name="name">exception.wizard.form</field>
+        <field name="model">exception.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <h3>the done quantity is not in tolerance</h3>
+                <footer>
+                    <button name="accept_button" string="Accept" class="btn-primary" type="object"/>
+                    <button string="Deny" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

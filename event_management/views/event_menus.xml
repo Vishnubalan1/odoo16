@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <menuitem id="event_management_menu" name="Event Management">
+            <menuitem id="configuration_menu" name="Configuration">
+                <menuitem id="event_types_menu" action="event_types_action"/>
+                <menuitem id="event_service_menu" action="event_service_action"/>
+                <menuitem id="event_catering_item_menu" action="event_catering_menu_action"/>
+            </menuitem>
+            <menuitem id="event_booking_menu" action="event_booking_action" sequence='1'/>
+            <menuitem id="event_catering_menu" action="event_catering_action" sequence="2"/>
+            <menuitem id="reporting_menu_1" action="report_wizard_action" sequence="3"/>
+        </menuitem>
+    </data>
+</odoo>

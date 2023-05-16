@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="custom_product_template_form" model="ir.ui.view">
+        <field name="name">custom.product.template</field>
+        <field name="model">product.template</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_label_layout']" position="after">
+                <button name="sale_order" string="Auto sale order" class="oe_highlight" type="object"/>
+            </xpath>
+            <xpath expr="//button[@name='sale_order']" position="after">
+                <button name="purchase" string="Auto purchase order" class="oe_highlight" type="object"/>
+            </xpath>
+
+        </field>
+
+    </record>
+
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="import_file_wizard_view_form" model="ir.ui.view">
+        <field name="name">import.file.wizard.form</field>
+        <field name="model">import.file.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group class = "oe-title">
+                <field name="file"/>
+                </group>
+
+                <footer>
+                    <button name="file_import" string="import" class="btn-primary" type="object"/>
+                    <button string="cancel" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

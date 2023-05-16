@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="production_menu_view_tree" model="ir.ui.view">
+            <field name="name">production.tree</field>
+            <field name="model">simple.product</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="product_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="production_menu_view_form" model="ir.ui.view">
+            <field name="name">production.form</field>
+            <field name="model">simple.product</field>
+            <field name="arch" type="xml">
+                <form string="production">
+                    <sheet>
+
+                        <group>
+                            <field name="product_id"/>
+                        </group>
+                        <field name="component_ids">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="simple_production_menu_action" model="ir.actions.act_window">
+            <field name="name">BOM</field>
+            <field name="res_model">simple.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="manufacture_main_menu" name="Manufacture">
+            <menuitem id="simple_production_menu" action="simple_production_menu_action"/>
+            <menuitem id="manufacture_menu" action="manufacture_menu_action"/>
+
+        </menuitem>
+
+    </data>
+</odoo>

@@ -1,0 +1,154 @@
+<odoo>
+    <template id="report_event">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h1>Event Management</h1>
+                    <h2>
+                        <t t-esc="data['event_type']"/>
+                    </h2>
+                    <span>
+                        <t t-if="data['from_date']">
+                            <strong>From date:</strong>
+                            <span t-esc="data['from_date']"/>
+                        </t>
+                        <t t-if="data['to_date']">
+                            <strong>To date:</strong>
+
+                            <span>
+                                <span t-esc="data['to_date']"/>
+                            </span>
+                        </t>
+                        <t t-if="data['to_date']==false and data['from_date']==false">
+                            <strong>Current date:</strong>
+                            <span>
+                                <span t-esc="data['date']"/>
+                            </span>
+                        </t>
+
+
+                    </span>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">sl no</th>
+                            <th scope="col">Event Name</th>
+                            <t t-if="not data['event_type']">
+                                <th scope="col">Event Type</th>
+                            </t>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Event Booking Date</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="existing_variable" t-value="1"/>
+                        <t t-set="total" t-value="0"/>
+                        <t t-set="no" t-value="0"/>
+                        <t t-foreach="data['record']" t-as="rec">
+                            <t t-set="val" t-value="0"/>
+                            <tr>
+                                <t t-if="not existing_variable == rec['booking']">
+                                    <th scope="row">
+                                        <span t-set="no" t-value="no+1"/>
+                                        <span t-esc="no"/>
+                                        <span t-set="val" t-value="val+1"/>
+                                    </th>
+                                    <td>
+                                        <span t-esc="rec['booking']"/>
+                                        <span t-set="existing_variable" t-value="rec['booking']"/>
+                                    </td>
+                                    <t t-if="not data['event_type']">
+                                        <td>
+                                            <span t-esc="rec['type']"/>
+                                        </td>
+                                    </t>
+                                    <td>
+                                        <span t-esc="rec['customer']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="rec['booking_date']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="rec['state']"/>
+                                    </td>
+                                </t>
+                            </tr>
+
+
+                            <t t-if="data['catering']">
+                                <div>
+                                    <tr>
+                                        <t t-if="val==1">
+                                            <td></td>
+
+                                            <td>
+                                                <strong>Catering item</strong>
+                                            </td>
+                                            <td>
+                                                <strong>Quantity</strong>
+                                            </td>
+
+                                            <td>
+                                                <strong>Unit  prize</strong>
+                                            </td>
+                                            <td>
+                                                <strong>Sub total</strong>
+                                            </td>
+                                            <td rowspan="7">
+
+                                                <strong>Total</strong>
+
+                                                    <div>
+                                                        <span t-esc="rec['total']"/>
+                                                    </div>
+
+                                            </td>
+                                        </t>
+                                    </tr>
+                                    <td></td>
+                                </div>
+                                <br/>
+                                <td>
+                                    <div>
+                                        <span t-esc="rec['name']"/>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span t-esc="rec['quantity']"/>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <div>
+                                        <span t-esc="rec['unit_prize']"/>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <div>
+                                        <span t-esc="rec['sub_total']"/>
+                                        <span t-set="total" t-value="total+rec['sub_total']"/>
+                                    </div>
+
+                                </td>
+                            </t>
+
+
+                        </t>
+                    </tbody>
+                </table>
+                <t t-if="data['catering']">
+
+                    <strong>Total</strong>
+                    <div>
+                        <span t-esc="total"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

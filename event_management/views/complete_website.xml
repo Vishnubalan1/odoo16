@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<odoo>
+
+    <template id="complete_page">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                <h1> Booking Successfully Created </h1>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
+
